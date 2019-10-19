@@ -5,10 +5,6 @@ package geos
 */
 import "C"
 
-import (
-	"runtime"
-)
-
 type coordSeq struct {
 	c *C.GEOSCoordSequence
 }
