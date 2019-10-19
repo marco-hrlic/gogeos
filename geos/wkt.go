@@ -22,7 +22,7 @@ func newWktDecoder() *wktDecoder {
 		return nil
 	}
 	d := &wktDecoder{r}
-	runtime.SetFinalizer(d, (*wktDecoder).destroy)
+	//runtime.SetFinalizer(d, (*wktDecoder).destroy)
 	return d
 }
 
@@ -53,7 +53,7 @@ func newWktEncoder() *wktEncoder {
 		return nil
 	}
 	e := &wktEncoder{w}
-	runtime.SetFinalizer(e, (*wktEncoder).destroy)
+	//runtime.SetFinalizer(e, (*wktEncoder).destroy)
 	return e
 }
 

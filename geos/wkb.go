@@ -7,7 +7,6 @@ import "C"
 
 import (
 	"encoding/hex"
-	"runtime"
 	"unsafe"
 )
 
@@ -18,7 +17,7 @@ type wkbDecoder struct {
 func newWkbDecoder() *wkbDecoder {
 	r := cGEOSWKBReader_create()
 	d := &wkbDecoder{r}
-	runtime.SetFinalizer(d, (*wkbDecoder).destroy)
+	//runtime.SetFinalizer(d, (*wkbDecoder).destroy)
 	return d
 }
 
@@ -58,7 +57,7 @@ func newWkbEncoder() *wkbEncoder {
 		return nil
 	}
 	e := &wkbEncoder{w}
-	runtime.SetFinalizer(e, (*wkbEncoder).destroy)
+	//runtime.SetFinalizer(e, (*wkbEncoder).destroy)
 	return e
 }
 
