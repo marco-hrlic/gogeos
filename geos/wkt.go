@@ -6,7 +6,6 @@ package geos
 import "C"
 
 import (
-	"runtime"
 	"unsafe"
 )
 
