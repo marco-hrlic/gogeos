@@ -391,9 +391,9 @@ func NewPolygon(shell []Coord, holes ...[]Coord) (*Geometry, error) {
 			return nil, err
 		}
 		ints = append(ints, g)
-		runtime.SetFinalizer(g, nil)
+		//runtime.SetFinalizer(g, nil)
 	}
-	runtime.SetFinalizer(ext, nil)
+	//runtime.SetFinalizer(ext, nil)
 	return PolygonFromGeom(ext, ints...)
 }
 
@@ -407,13 +407,13 @@ func PolygonFromGeom(shell *Geometry, holes ...*Geometry) (*Geometry, error) {
 	for i := range holes {
 		holeCPtrs = append(holeCPtrs, holes[i].g)
 		// The ownership of the holes becomes that of the new polygon
-		runtime.SetFinalizer(holes[i], nil)
+		//runtime.SetFinalizer(holes[i], nil)
 	}
 	if len(holeCPtrs) > 0 {
 		ptrHoles = &holeCPtrs[0]
 	}
 	// The ownership of the shell becomes that of the new polygon
-	runtime.SetFinalizer(shell, nil)
+	//runtime.SetFinalizer(shell, nil)
 	return geomFromC("NewPolygon", cGEOSGeom_createPolygon(shell.g, ptrHoles, C.uint(len(holeCPtrs))))
 }
 
@@ -433,7 +433,7 @@ func NewCollection(_type GeometryType, geoms ...*Geometry) (*Geometry, error) {
 		geomCPtrs = append(geomCPtrs, geoms[i].g)
 		// The ownership of the component geometries becomes that of the new
 		// collection geometry
-		runtime.SetFinalizer(geoms[i], nil)
+		//runtime.SetFinalizer(geoms[i], nil)
 	}
 	ptrGeoms = &geomCPtrs[0]
 	return geomFromC("NewCollection", cGEOSGeom_createCollection(C.int(_type), ptrGeoms, C.uint(len(geomCPtrs))))
